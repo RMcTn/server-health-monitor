@@ -14,7 +14,8 @@ class SendHeartbeatJob < ApplicationJob
     # TODO: Will need a timeout to stop getting hung
     begin
       res = Net::HTTP.get_response(uri)
-      heartbeat = server.heartbeats.create(status_code: res.code, request_time: request_time)
+      response_time = Time.now
+      heartbeat = server.heartbeats.create(status_code: res.code, request_time: request_time, response_time: response_time)
     rescue Errno::ECONNREFUSED => e
       # TODO: Check if different HTTP lib will handle things like google.com instead of http://www.google.com
       heartbeat = server.heartbeats.create(status_code: 0, request_time: request_time, status_message: e.message)
