@@ -1,8 +1,14 @@
 <div id="<%= dom_id heartbeat %>">
   <p><%= heartbeat.status_code %></p>
   <p><%= heartbeat.request_time %></p>
-  <% if action_name != "show" %>
-    <%= link_to "Show this heartbeat", server_heartbeat_path(@server, heartbeat), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+  <% if heartbeat.status_message %>
+    <p><%= heartbeat.status_message %></p>
+  <% end %>
+  <% if true %>
+    <% # TODO: Better solution for action_name check since turbo stream is coming in as not a show action, but rendering on server page does on load %>
+    <% if action_name != "xxx" %>
+      <%= link_to "Show this heartbeat", server_heartbeat_path(heartbeat.server, heartbeat), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <hr class="mt-6">
+    <% end %>
   <% end %>
 </div>

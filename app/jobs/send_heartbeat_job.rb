@@ -15,10 +15,9 @@ class SendHeartbeatJob < ApplicationJob
     begin
       res = Net::HTTP.get_response(uri)
       heartbeat = server.heartbeats.create(status_code: res.code, request_time: request_time)
-    rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError, Errno::ECONNREFUSED,
-      Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-      # TODO: Handle this better (different http lib?)
-      heartbeat = server.heartbeats.create(status_code: 0, request_time: request_time)
+    rescue Errno::ECONNREFUSED => e
+      # TODO: Check if different HTTP lib will handle things like google.com instead of http://www.google.com
+      heartbeat = server.heartbeats.create(status_code: 0, request_time: request_time, status_message: e.message)
     end
   end
 end

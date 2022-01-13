@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_13_161915) do
+ActiveRecord::Schema.define(version: 2022_01_13_213523) do
 
   create_table "heartbeats", force: :cascade do |t|
     t.string "status_code", null: false
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_161915) do
     t.integer "server_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status_message"
     t.index ["server_id"], name: "index_heartbeats_on_server_id"
   end
 

@@ -9,6 +9,6 @@
     <div class="inline-block ml-2">
       <%= button_to 'Destroy this heartbeat', server_heartbeat_path(@server, @heartbeat), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>
-    <%= link_to 'Back to heartbeats', server_heartbeats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Back to server', server_path(@server), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>
