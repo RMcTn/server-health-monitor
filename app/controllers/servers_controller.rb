@@ -37,6 +37,7 @@ class ServersController < ApplicationController
 
   # PATCH/PUT /servers/1 or /servers/1.json
   def update
+    # TODO: Requeue job if updated?
     respond_to do |format|
       if @server.update(server_params)
         format.html { redirect_to server_url(@server), notice: "Server was successfully updated." }
