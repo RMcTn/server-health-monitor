@@ -6,7 +6,7 @@ class HeartbeatsController < ApplicationController
 
   # GET /heartbeats or /heartbeats.json
   def index
-    @heartbeats = Heartbeat.all
+    @heartbeats = @server.heartbeats
   end
 
   # GET /heartbeats/1 or /heartbeats/1.json
