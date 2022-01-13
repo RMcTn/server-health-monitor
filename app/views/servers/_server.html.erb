@@ -12,7 +12,7 @@
     <h3 class="text-lg font-bold">Requests</h3>
     <div id="heartbeats">
       <%= turbo_stream_from server %>
-      <%= render server.heartbeats %>
+      <%= render server.heartbeats.order(id: :desc) %>
     </div>
   <% end %>
 </div>
