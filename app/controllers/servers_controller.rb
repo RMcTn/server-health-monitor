@@ -27,6 +27,7 @@ class ServersController < ApplicationController
       if @server.save
         format.html { redirect_to server_url(@server), notice: "Server was successfully created." }
         format.json { render :show, status: :created, location: @server }
+        SendHeartbeatJob.perform_later(@server)
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @server.errors, status: :unprocessable_entity }

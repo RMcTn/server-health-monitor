@@ -24,14 +24,6 @@ class HeartbeatsController < ApplicationController
 
   # POST /heartbeats or /heartbeats.json
   def create
-    p "IN CREATE"
-
-    uri = URI.parse(@server.hostname)
-    p uri
-    p "Sending request to " + uri.to_s
-    res = Net::HTTP.get_response(uri)
-    p "SUCCESS" if res.is_a?(Net::HTTPSuccess)
-
     @heartbeat = @server.heartbeats.create(status_code: res.code, request_time: Time.now)
     respond_to do |format|
       if @heartbeat.save
