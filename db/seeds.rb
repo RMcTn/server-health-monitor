@@ -10,4 +10,4 @@ Server.insert_all([{hostname: "localhost:3000"}])
 
 Server.all.pluck(:id) => [id_1]
 
-Request.insert_all([{server_id: id_1, status_code: 200, request_time: Time.now}])
+Heartbeat.insert_all([{server_id: id_1, status_code: 200, request_time: Time.now}, {server_id: id_1, status_code: 200, request_time: Time.now}])

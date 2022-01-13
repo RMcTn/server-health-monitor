@@ -1,3 +1,3 @@
 class Server < ApplicationRecord
-  has_many :requests
+  has_many :heartbeats
 end
