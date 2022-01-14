@@ -1,9 +1,5 @@
 <div id="<%= dom_id server %>">
-  <p class="my-5">
-    <strong class="block mb-1 font-medium">Hostname:</strong>
-    <%= server.hostname %>
-  </p>
-
+  <%= render 'server_header', server: server %>
   <% if action_name != "show" %>
     <%= link_to "Show this server", server, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this server', edit_server_path(server), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>

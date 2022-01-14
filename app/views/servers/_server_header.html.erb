@@ -1,0 +1,25 @@
+<% if false %>
+  TODO: Integrate with turbo for live updating. Is this possible with below?
+<% end %>
+<% any_stats_code_errors = false %>
+<% server.heartbeats.order(id: :desc).limit(1).each do |heartbeat| %>
+  <% if heartbeat.status_code == "0" %>
+    <% any_stats_code_errors = true %>
+    <% break %>
+  <% end %>
+<% end %>
+
+
+
+<div id="<%= dom_id(server) + "-server-header" %>"class="">
+  <%= turbo_stream_from server %>
+  <p class="inline my-5">
+  <strong class="block mb-1 font-medium">Hostname:</strong>
+  <%= server.hostname %>
+  </p>
+  <% if any_stats_code_errors %>
+    <div class="w-4 h-4 bg-red-500 rounded-full"></div>
+  <% else %>
+    <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+  <% end %>
+</div>
