@@ -3,6 +3,7 @@ class HeartbeatsController < ApplicationController
   require 'net/http'
   before_action :set_heartbeat, only: %i[ show edit update destroy ]
   before_action :set_server 
+  before_action :set_organisation
 
   # GET /heartbeats or /heartbeats.json
   def index
@@ -67,6 +68,10 @@ class HeartbeatsController < ApplicationController
 
     def set_server
       @server = Server.find(params[:server_id])
+    end
+
+    def set_organisation
+      @organisation = Organisation.find(params[:organisation_id])
     end
 
     # Only allow a list of trusted parameters through.

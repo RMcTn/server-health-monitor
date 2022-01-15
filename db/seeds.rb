@@ -6,8 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 #
-Server.insert_all([{hostname: "localhost:3000"}])
+#
+Organisation.insert_all([{name: "org1"}, {name: "org2"}])
+server = Organisation.first.servers.create(hostname: "localhost:3000")
 
-Server.all.pluck(:id) => [id_1]
+id_1 = server.id
 
 Heartbeat.insert_all([{server_id: id_1, status_code: 200, request_time: Time.now}, {server_id: id_1, status_code: 200, request_time: Time.now}])
