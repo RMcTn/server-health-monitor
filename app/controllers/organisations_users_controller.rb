@@ -1,0 +1,30 @@
+class OrganisationsUsersController < ApplicationController
+  before_action :set_organisation, only: %i[ new create edit update destroy ]
+
+   def new
+     @organisations_user = OrganisationsUser.new
+   end
+
+   def create
+    @user = User.find_by(email: params[:organisations_user][:email])
+    if @user == nil 
+      redirect_to new_organisation_organisations_user_path(@organisation), alert: params[:organisations_user][:email] + " could not be found"
+      return
+    end
+
+    @organisations_user = OrganisationsUser.create(organisation_id: @organisation.id, user_id: @user.id)
+    if @organisations_user.save
+      redirect_to organisation_path(@organisation), notice: @user.email + " was successfully added"
+    else
+      render :new, status: :unprocessable_entity
+    end
+   end
+
+   def destroy
+   end
+
+    def set_organisation
+      @organisation = Organisation.find(params[:organisation_id])
+    end
+end
+

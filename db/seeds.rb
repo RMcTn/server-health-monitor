@@ -8,8 +8,16 @@
 #
 #
 Organisation.insert_all([{name: "org1"}, {name: "org2"}])
-server = Organisation.first.servers.create(hostname: "localhost:3000")
+org = Organisation.first
+server = org.servers.create(hostname: "localhost:3000")
 
 id_1 = server.id
-
 Heartbeat.insert_all([{server_id: id_1, status_code: 200, request_time: Time.now}, {server_id: id_1, status_code: 200, request_time: Time.now}])
+
+user = User.create(email: "a@example.com", password: "password", password_confirmation: "password")
+org.users << user
+
+User.create(email: "b@example.com", password: "password", password_confirmation: "password")
+User.create(email: "c@example.com", password: "password", password_confirmation: "password")
+User.create(email: "d@example.com", password: "password", password_confirmation: "password")
+User.create(email: "e@example.com", password: "password", password_confirmation: "password")

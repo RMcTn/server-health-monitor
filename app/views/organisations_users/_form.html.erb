@@ -1,0 +1,18 @@
+<%= form_with(model: organisations_user, url: [organisation, organisations_user], class: "contents") do |form| %>
+  <% if organisations_user.errors.any? %>
+    <div id="error_explanation" class="px-3 py-2 mt-3 font-medium text-red-500 rounded-lg bg-red-50">
+      <h2><%= pluralize(organisations_user.errors.count, "error") %> prohibited this organisations_user from being saved:</h2>
+
+      <ul>
+        <% organisations_user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="inline">
+    Email: <%= form.text_field :email %>
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
