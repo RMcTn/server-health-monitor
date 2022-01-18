@@ -6,7 +6,7 @@ class ServersController < ApplicationController
   # GET /servers or /servers.json
   def index
     authorize @organisation
-    @servers = Server.all
+    @servers = @organisation.servers
   end
 
   # GET /servers/1 or /servers/1.json
