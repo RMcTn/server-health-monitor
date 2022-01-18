@@ -1,7 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+	static targets = ["sidebar"]
   connect() {
-    this.element.textContent = "Hello World!"
   }
+	toggleSidebar() {
+		this.sidebarTarget.classList.toggle("translate-x-0")
+	}
 }

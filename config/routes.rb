@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'dashboard/show'
+  get 'dashboard/index'
   devise_for :users
   resources :organisations do 
     resources :organisations_users, only: [:new, :create, :destroy]
