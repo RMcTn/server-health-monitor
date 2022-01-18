@@ -4,7 +4,7 @@ class OrganisationsController < ApplicationController
 
   # GET /organisations or /organisations.json
   def index
-    @organisations = Organisation.all
+    @organisations = current_user.organisations
   end
 
   # GET /organisations/1 or /organisations/1.json
@@ -23,6 +23,7 @@ class OrganisationsController < ApplicationController
   # POST /organisations or /organisations.json
   def create
     @organisation = Organisation.new(organisation_params)
+    @organisation.users << current_user
 
     respond_to do |format|
       if @organisation.save
