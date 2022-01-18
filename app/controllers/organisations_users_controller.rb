@@ -13,7 +13,6 @@ class OrganisationsUsersController < ApplicationController
       return
     end
 
-    # TODO: Check for existing entry (maybe just do @organisation.users.create(@user) avoids duplicates i think)
     @organisations_user = OrganisationsUser.create(organisation_id: @organisation.id, user_id: @user.id)
     if @organisations_user.save
       redirect_to organisation_path(@organisation), notice: @user.email + " was successfully added" 
