@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
-  before_action :set_organisations
   before_action :authenticate_user!
+  before_action :set_organisations
 
   def show
   end
