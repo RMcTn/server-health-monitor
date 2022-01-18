@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :organisations do 
-    resources :organisations_users, only: [:new, :create]
+    resources :organisations_users, only: [:new, :create, :destroy]
     resources :servers do 
       resources :heartbeats, only: [:show, :index]
     end

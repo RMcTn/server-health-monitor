@@ -6,21 +6,34 @@ class OrganisationsUsersController < ApplicationController
    end
 
    def create
-    @user = User.find_by(email: params[:organisations_user][:email])
+    email = params[:organisations_user][:email]
+    @user = User.find_by(email: email)
     if @user == nil 
-      redirect_to new_organisation_organisations_user_path(@organisation), alert: params[:organisations_user][:email] + " could not be found"
+      redirect_to new_organisation_organisations_user_path(@organisation), alert: email + " could not be found"
       return
     end
 
+    # TODO: Check for existing entry (maybe just do @organisation.users.create(@user) avoids duplicates i think)
     @organisations_user = OrganisationsUser.create(organisation_id: @organisation.id, user_id: @user.id)
     if @organisations_user.save
-      redirect_to organisation_path(@organisation), notice: @user.email + " was successfully added"
+      redirect_to organisation_path(@organisation), notice: @user.email + " was successfully added" 
     else
       render :new, status: :unprocessable_entity
     end
    end
 
    def destroy
+    @user = User.find(params[:user_id])
+    if @user == nil 
+      redirect_to organisation_path(@organisation), notice: params[:email] + " was removed"
+      return
+    end
+
+    @organisations_user = OrganisationsUser.find_by(organisation_id: @organisation.id, user_id: @user.id)
+    @organisations_user.destroy
+
+    redirect_to organisation_path(@organisation), notice: params[:email] + " was removed"
+     
    end
 
     def set_organisation

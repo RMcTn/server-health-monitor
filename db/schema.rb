@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_17_110620) do
+ActiveRecord::Schema.define(version: 2022_01_18_093447) do
 
   create_table "heartbeats", force: :cascade do |t|
     t.string "status_code", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_110620) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "organisations_users", id: false, force: :cascade do |t|
+  create_table "organisations_users", force: :cascade do |t|
     t.integer "organisation_id", null: false
     t.integer "user_id", null: false
     t.index ["organisation_id"], name: "index_organisations_users_on_organisation_id"

@@ -10,7 +10,7 @@
 
 
     <div id="users">
-      <%= render @organisation.users %>
+      <%= render @organisation.users, organisation: @organisation %>
     </div>
 
     <%= link_to 'Add a member', new_organisation_organisations_user_path(@organisation), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"  %>
