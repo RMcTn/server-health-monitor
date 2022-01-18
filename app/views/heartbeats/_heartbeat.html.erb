@@ -4,8 +4,9 @@
   <% if heartbeat.status_message %>
     <p><%= heartbeat.status_message %></p>
   <% end %>
+  <p>Request sent <span><%= time_ago_in_words(heartbeat.request_time) %></span> ago</p>
   <% if heartbeat.response_time %>
-    <p>Response in <span><%= distance_of_time_in_words(heartbeat.request_time, heartbeat.response_time)%></span></p>
+    <p>Response in <span><%= distance_of_time_in_words(heartbeat.request_time, heartbeat.response_time)%></span> (<%= heartbeat.response_time - heartbeat.request_time %> seconds)</p>
   <% end %>
   <% if true %>
     <% # TODO: Better solution for action_name check since turbo stream is coming in as not a show action, but rendering on server page does on load %>
