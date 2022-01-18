@@ -8,24 +8,29 @@ class HeartbeatsController < ApplicationController
 
   # GET /heartbeats or /heartbeats.json
   def index
+    authorize @organisation
     @heartbeats = @server.heartbeats
   end
 
   # GET /heartbeats/1 or /heartbeats/1.json
   def show
+    authorize @organisation
   end
 
   # GET /heartbeats/new
   def new
+    authorize @organisation
     @heartbeat = Heartbeat.new
   end
 
   # GET /heartbeats/1/edit
   def edit
+    authorize @organisation
   end
 
   # POST /heartbeats or /heartbeats.json
   def create
+    authorize @organisation
     @heartbeat = @server.heartbeats.create(status_code: res.code, request_time: Time.now)
     respond_to do |format|
       if @heartbeat.save
@@ -40,6 +45,7 @@ class HeartbeatsController < ApplicationController
 
   # PATCH/PUT /heartbeats/1 or /heartbeats/1.json
   def update
+    authorize @organisation
     respond_to do |format|
       if @heartbeat.update(heartbeat_params)
         format.html { redirect_to heartbeat_url(@heartbeat), notice: "Heartbeat was successfully updated." }
@@ -53,6 +59,7 @@ class HeartbeatsController < ApplicationController
 
   # DELETE /heartbeats/1 or /heartbeats/1.json
   def destroy
+    authorize @organisation
     @heartbeat.destroy
 
     respond_to do |format|

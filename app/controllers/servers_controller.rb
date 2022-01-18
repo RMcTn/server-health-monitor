@@ -1,28 +1,33 @@
 class ServersController < ApplicationController
   before_action :set_server, only: %i[ show edit update destroy ]
-  before_action :set_organisation, only: %i[ show new create edit update destroy ]
+  before_action :set_organisation
   before_action :authenticate_user!
 
   # GET /servers or /servers.json
   def index
+    authorize @organisation
     @servers = Server.all
   end
 
   # GET /servers/1 or /servers/1.json
   def show
+    authorize @organisation
   end
 
   # GET /servers/new
   def new
+    authorize @organisation
     @server = Server.new
   end
 
   # GET /servers/1/edit
   def edit
+    authorize @organisation
   end
 
   # POST /servers or /servers.json
   def create
+    authorize @organisation
     @server = @organisation.servers.create(server_params)
 
     respond_to do |format|
@@ -39,6 +44,7 @@ class ServersController < ApplicationController
 
   # PATCH/PUT /servers/1 or /servers/1.json
   def update
+    authorize @organisation
     # TODO: Requeue job if updated?
     respond_to do |format|
       if @server.update(server_params)
@@ -53,6 +59,7 @@ class ServersController < ApplicationController
 
   # DELETE /servers/1 or /servers/1.json
   def destroy
+    authorize @organisation
     @server.destroy
 
     respond_to do |format|
