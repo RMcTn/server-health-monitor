@@ -4,6 +4,7 @@ class HeartbeatsController < ApplicationController
   before_action :set_heartbeat, only: %i[ show edit update destroy ]
   before_action :set_server 
   before_action :set_organisation
+  before_action :authenticate_user!
 
   # GET /heartbeats or /heartbeats.json
   def index

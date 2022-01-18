@@ -1,6 +1,7 @@
 class ServersController < ApplicationController
   before_action :set_server, only: %i[ show edit update destroy ]
   before_action :set_organisation, only: %i[ show new create edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /servers or /servers.json
   def index

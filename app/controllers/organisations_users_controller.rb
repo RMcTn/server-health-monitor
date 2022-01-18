@@ -1,5 +1,6 @@
 class OrganisationsUsersController < ApplicationController
   before_action :set_organisation, only: %i[ new create edit update destroy ]
+  before_action :authenticate_user!
 
    def new
      @organisations_user = OrganisationsUser.new
