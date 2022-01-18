@@ -10,7 +10,6 @@ class SendHeartbeatJob < ApplicationJob
     # TODO: need a queue backend for this for persistence
     uri = URI.parse(server.hostname)
     request_time = Time.now
-    # TODO: Handle case where server no longer exists
     # TODO: Will need a timeout to stop getting hung
     begin
       res = Net::HTTP.get_response(uri)

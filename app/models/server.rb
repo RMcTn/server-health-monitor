@@ -1,5 +1,5 @@
 class Server < ApplicationRecord
-  validates :hostname, presence: true
+  validates :hostname, presence: true , format: { with: /https?:\/\/.*/, message: "Hostname must start with http:// or https://"}
   has_many :heartbeats, dependent: :destroy
   belongs_to :organisation
 
@@ -18,7 +18,7 @@ class Server < ApplicationRecord
   end
 
   def last_request_failed?
-    return false if !defined?(heartbeats.last)
+    return false if heartbeats.last == nil
     ERRORS.include?(heartbeats.last.status_code)
   end
 end
