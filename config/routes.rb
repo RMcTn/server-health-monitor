@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'dashboard/show'
   get 'dashboard/index'
   devise_for :users
+  resources :user, only: :show
   resources :organisations do 
     resources :organisations_users, only: [:new, :create, :destroy]
     resources :servers do 
