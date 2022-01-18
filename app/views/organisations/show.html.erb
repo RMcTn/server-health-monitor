@@ -22,6 +22,6 @@
     <%= link_to 'New server', new_organisation_server_path(@organisation), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
   </div>
   <div class="flex mx-auto">
-    <%= render @organisation.servers %>
+    <%= render @organisation.servers, organisation: @organisation %>
   </div>
 </div>

@@ -4,7 +4,7 @@
       <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
     <% end %>
 
-    <%= render @server %>
+    <%= render @server, organisation: @organisation %>
 
     <%= link_to 'Edit this server', edit_organisation_server_path(@organisation, @server), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">

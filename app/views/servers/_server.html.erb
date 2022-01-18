@@ -1,8 +1,8 @@
 <div id="<%= dom_id server %>">
   <%= render 'servers/server_header', server: server %>
-    <%= link_to "Show this server", organisation_server_path(@organisation, server), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Show this server", organisation_server_path(organisation, server), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   <% if action_name != "show" %>
-    <%= link_to 'Edit this server', edit_organisation_server_path(@organisation, server), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this server', edit_organisation_server_path(organisation, server), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
 </div>
