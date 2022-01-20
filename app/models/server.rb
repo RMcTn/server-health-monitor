@@ -1,11 +1,17 @@
 class Server < ApplicationRecord
-  validates :hostname, presence: true , format: { with: /https?:\/\/.*/, message: "Hostname must start with http:// or https://"}
+  validates :hostname, presence: true, format: { with: /\A(?!https?:\/\/).*/, message: "Hostname cannot start with http:// or https://"}
+  validates :protocol, inclusion: { in: %w(http:// https://)}
   has_many :heartbeats, dependent: :destroy
   belongs_to :organisation
 
   ERRORS = [
     "500",
     "0"
+  ]
+
+  PROTOCOLS = [
+    "http://",
+    "https://"
   ]
 
 

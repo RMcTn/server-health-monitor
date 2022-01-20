@@ -8,7 +8,7 @@ class SendHeartbeatJob < ApplicationJob
 
   def perform(server)
     # TODO: need a queue backend for this for persistence
-    uri = URI.parse(server.hostname)
+    uri = URI.parse(server.protocol + server.hostname)
     request_time = Time.now
     # TODO: Will need a timeout to stop getting hung
     begin
