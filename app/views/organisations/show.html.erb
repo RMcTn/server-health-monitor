@@ -9,9 +9,11 @@
     <% end %>
 
     <%= render @organisation %>
-    <%= render @organisation.servers_with_immediate_problem, organisation: @organisation  %>
 
-
+    <h1 class="text-xl font-bold">Servers with recent problems</h1>
+    <div id="problem_servers" class="flex flex-wrap py-4 pl-4 bg-red-200 rounded-lg gap-4">
+    <%= render @organisation.servers_with_recent_problems, organisation: @organisation  %>
+    </div>
 
     <div id="users">
       <%= render @organisation.users, organisation: @organisation %>
