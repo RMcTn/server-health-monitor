@@ -4,11 +4,13 @@ class Organisation < ApplicationRecord
   has_many :organisations_users, dependent: :destroy
   has_many :users, through: :organisations_users
 
-  def servers_with_problems
-    # Loop through the servers, look for any with an error
-    # Could we not just make an sql query for servers with org id == this one + status_code one of 0 or 500 etc?
-    # TODO
-    servers.each
+  def servers_with_recent_problems
+    # TODO SPEEDUP Check the db impact of this
+    servers.select { |server| server.recent_failure? }
 
+  end
+
+  def servers_with_immediate_problem
+    servers.select { |server| server.last_request_failed? }
   end
 end

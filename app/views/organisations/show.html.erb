@@ -9,6 +9,7 @@
     <% end %>
 
     <%= render @organisation %>
+    <%= render @organisation.servers_with_immediate_problem, organisation: @organisation  %>
 
 
 
