@@ -54,7 +54,7 @@
         <p class="px-4 py-1 font-normal rounded">Signed in as <%= current_user.email %></p>
         <hr>
         <%# TODO: current_organisation triggers if on the new page %>
-        <% if current_organisation != nil || current_organisation.new_record? %>
+        <% if current_organisation != nil && !current_organisation.new_record? %>
           <p><%= current_organisation.name %></p>
           <%= link_to organisation_path(@organisation), class: "px-4 py-1 hover:bg-red-400 rounded transition duration-200" do %>
             <div class="flex">
