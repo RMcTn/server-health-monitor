@@ -1,10 +1,16 @@
 class OrganisationsController < ApplicationController
-  before_action :set_organisation, only: %i[ show edit update destroy ]
+  before_action :set_organisation, only: %i[ show edit update destroy]
   before_action :authenticate_user!
 
   # GET /organisations or /organisations.json
   def index
     @organisations = current_user.organisations
+  end
+
+  def problems
+    # TODO: Move to own controller?
+      @organisation = Organisation.find(params[:organisation_id])
+    render :problems
   end
 
   # GET /organisations/1 or /organisations/1.json

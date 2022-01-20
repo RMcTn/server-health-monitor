@@ -6,11 +6,11 @@ class Organisation < ApplicationRecord
 
   def servers_with_recent_problems
     # TODO SPEEDUP Check the db impact of this
-    servers.select { |server| server.recent_failure? }
+    servers.order(updated_at: :desc).select { |server| server.recent_failure? }
 
   end
 
   def servers_with_immediate_problem
-    servers.select { |server| server.last_request_failed? }
+    servers.order(updated_at: :desc).select { |server| server.last_request_failed? }
   end
 end

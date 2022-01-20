@@ -10,11 +10,6 @@
 
     <%= render @organisation %>
 
-    <h1 class="text-xl font-bold">Servers with recent problems</h1>
-    <div id="problem_servers" class="flex flex-wrap py-4 pl-4 bg-red-200 rounded-lg gap-4">
-    <%= render @organisation.servers_with_recent_problems, organisation: @organisation  %>
-    </div>
-
     <div id="users">
       <%= render @organisation.users, organisation: @organisation %>
     </div>
@@ -27,7 +22,7 @@
     <%= link_to 'Back to organisations', organisations_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'New server', new_organisation_server_path(@organisation), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
   </div>
-  <div class="flex mx-auto">
+  <div class="flex flex-wrap py-4 pl-4 rounded-lg gap-4">
     <%= render @organisation.servers, organisation: @organisation %>
   </div>
 </div>

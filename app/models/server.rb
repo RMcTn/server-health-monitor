@@ -24,7 +24,7 @@ class Server < ApplicationRecord
   end
 
   def last_request_failed?
-    return false if heartbeats.last == nil
-    ERRORS.include?(heartbeats.last.status_code)
+    return false if heartbeats.first == nil
+    ERRORS.include?(heartbeats.first.status_code)
   end
 end
