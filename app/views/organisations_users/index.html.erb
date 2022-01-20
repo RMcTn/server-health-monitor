@@ -1,14 +1,15 @@
 <div class="w-full">
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
   <% end %>
+  <%= turbo_stream_from @organisation %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Organisations users</h1>
-    <%= link_to 'New organisations user', new_organisations_user_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <div class="flex items-center justify-between">
+    <h1 class="text-4xl font-bold">Organisations users</h1>
+    <%= link_to 'New organisations user', new_organisation_organisations_user_path(@organisation), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="organisations_users" class="min-w-full">
-    <%= render @organisations_users %>
+  <div id="users" class="min-w-full">
+    <%= render @organisations_users, organisation: @organisation %>
   </div>
 </div>

@@ -1,4 +1,4 @@
-class OrganisationPolicy < ApplicationPolicy
+class OrganisationsUserPolicy < ApplicationPolicy
   attr_reader :user, :organisation
 
   def initialize(user, organisation)
@@ -7,15 +7,6 @@ class OrganisationPolicy < ApplicationPolicy
   end
 
   def index?
-    true
-  end
-
-
-  def problems?
-    @organisation.users.include?(@user)
-  end
-
-  def warnings?
     @organisation.users.include?(@user)
   end
 
@@ -24,7 +15,7 @@ class OrganisationPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    @organisation.users.include?(@user)
   end
 
   def new?

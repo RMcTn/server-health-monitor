@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :organisations do 
     get 'problems', to: 'organisations#problems'
     get 'warnings', to: 'organisations#warnings'
-    resources :organisations_users, only: [:new, :create, :destroy]
+    resources :organisations_users, only: [:index, :new, :create, :destroy]
     resources :servers do 
       resources :heartbeats, only: [:show, :index]
     end

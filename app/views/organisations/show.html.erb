@@ -10,12 +10,7 @@
 
 
     <%= render @organisation %>
-
-    <div id="users">
-      <%= render @organisation.users, organisation: @organisation %>
-    </div>
-
-    <%= link_to 'Add a member', new_organisation_organisations_user_path(@organisation), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"  %>
+    <p class="text-xl font-bold">Consider having section for good status servers - Would fix duplicate server-header-id issue</p>
     <%= link_to 'Edit this organisation', edit_organisation_path(@organisation), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to 'Destroy this organisation', organisation_path(@organisation), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
@@ -23,6 +18,9 @@
     <%= link_to 'Back to organisations', organisations_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'New server', new_organisation_server_path(@organisation), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
   </div>
+    <%= render "problems", organisation: @organisation %>
+    <%= render "warnings", organisation: @organisation %>
+
   <div class="flex flex-wrap py-4 pl-4 rounded-lg gap-4">
     <%= render @organisation.servers, organisation: @organisation %>
   </div>
