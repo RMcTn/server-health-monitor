@@ -18,7 +18,10 @@ class Server < ApplicationRecord
   def recent_failure?
     @heartbeats_check_amount = 5
     # TODO: Should use a scope here for order?
-    heartbeats.order(id: :desc).limit(@heartbeats_check_amount).any? do |heartbeat|
+    arr = heartbeats.order(id: :desc).limit(@heartbeats_check_amount)
+    return false if arr.first == nil
+    return false if ERRORS.include?(arr[0].status_code) 
+    arr.any? do |heartbeat|
       ERRORS.include?(heartbeat.status_code)
     end
   end

@@ -10,10 +10,15 @@ class Heartbeat < ApplicationRecord
 
 
     # TODO NOTE SPEEDUP Fire this off for every heartbeat? Any better way? Is it even a problem?
-    if server.last_request_failed? 
-      broadcast_prepend_to server.organisation, target: "problem_servers", partial: 'servers/problem_server', locals: {server: server, organisation: server.organisation}
-    else 
       problem_server_dom_id = "server_" + server.id.to_s + "-problem"
+    if server.last_request_failed? 
+      broadcast_remove_to server.organisation.id.to_s + "-warning", target: problem_server_dom_id
+      broadcast_prepend_to server.organisation, target: "problem_servers", partial: 'servers/problem_server', locals: {server: server, organisation: server.organisation}
+    elsif server.recent_failure? 
+      broadcast_remove_to server.organisation.id.to_s + "-problem", target: problem_server_dom_id
+      broadcast_remove_to server.organisation, target: problem_server_dom_id
+      broadcast_prepend_to server.organisation, target: "warning_servers", partial: 'servers/problem_server', locals: {server: server, organisation: server.organisation}
+    else
       broadcast_remove_to server.organisation, target: problem_server_dom_id
     end
   }

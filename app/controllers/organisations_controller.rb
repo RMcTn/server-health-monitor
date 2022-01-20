@@ -9,8 +9,14 @@ class OrganisationsController < ApplicationController
 
   def problems
     # TODO: Move to own controller?
-      @organisation = Organisation.find(params[:organisation_id])
+    @organisation = Organisation.find(params[:organisation_id])
     render :problems
+  end
+
+  def warnings
+    # TODO: Move to own controller?
+    @organisation = Organisation.find(params[:organisation_id])
+    render :warnings
   end
 
   # GET /organisations/1 or /organisations/1.json
