@@ -8,9 +8,6 @@
   <% end %>
   <p>Possible there could be a bug with the heartbeats turbo stream. Something about a missing source maybe since it's on the heartbeat entries?</p>
 
-
-  <p>Add colours to heartbeats. Could use helper to decide bg-x-200 colour</p>
-
   <%= render @server, organisation: @organisation %>
 
   <%= link_to 'Edit this server', edit_organisation_server_path(@organisation, @server), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
@@ -20,8 +17,9 @@
   <%= link_to 'Back to organisation', organisation_path(@organisation), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
   <div data-chart-target="chart" class="w-full h-96"></div>
+
   <h3 class="text-lg font-bold">Requests</h3>
-  <div id="heartbeats">
+  <div id="heartbeats" class="flex flex-col gap-4">
     <%= render @server.heartbeats.order(id: :desc), server: @server, organisation: @organisation %>
   </div>
 </div>

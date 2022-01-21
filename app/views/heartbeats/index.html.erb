@@ -10,7 +10,7 @@
     <h1 class="text-4xl font-bold">Heartbeats</h1>
   </div>
 
-  <div id="heartbeats" class="min-w-full">
+  <div id="heartbeats" class="flex min-w-full gap-4">
     <%= render @heartbeats %>
   </div>
   <%= link_to "Back to server", server_path(@server), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
