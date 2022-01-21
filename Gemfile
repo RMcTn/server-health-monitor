@@ -77,3 +77,7 @@ end
 gem "devise", "~> 4.8"
 
 gem "pundit", "~> 2.1"
+
+gem "chartkick", "~> 4.1"
+
+gem "groupdate", "~> 6.0"

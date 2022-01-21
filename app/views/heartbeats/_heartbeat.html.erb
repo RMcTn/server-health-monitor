@@ -1,4 +1,6 @@
-<div id="<%= dom_id heartbeat %>">
+<% round_trip_time = nil %>
+<% round_trip_time = heartbeat.response_time - heartbeat.request_time if heartbeat.response_time != nil %>
+<%= tag.div id: dom_id(heartbeat), data: { chart_target: "heartbeat", request_time: heartbeat.request_time, response_time: round_trip_time } do %>
   <p><%= heartbeat.status_code %></p>
   <p><%= heartbeat.request_time %></p>
   <% if heartbeat.status_message %>
@@ -15,4 +17,4 @@
       <hr class="mt-6">
     <% end %>
   <% end %>
-</div>
+<% end %>
