@@ -21,6 +21,13 @@ class OrganisationsController < ApplicationController
     render :warnings
   end
 
+  def healthy
+    # TODO: Move to own controller?
+    @organisation = Organisation.find(params[:organisation_id])
+    authorize @organisation
+    render :healthy
+  end
+
   # GET /organisations/1 or /organisations/1.json
   def show
     authorize @organisation

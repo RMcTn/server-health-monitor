@@ -1,5 +1,4 @@
 <h1 class="text-xl font-bold">Servers with immediate problems</h1>
-<%= turbo_stream_from organisation.id.to_s + "-problem" %>
 <div id="problem_servers" class="flex flex-wrap py-4 pl-4 bg-red-200 rounded-lg gap-4">
   <%= turbo_stream_from organisation %>
   <%= render partial: "servers/problem_server", collection: @organisation.servers_with_immediate_problem, as: :server, locals: { organisation: organisation } %>

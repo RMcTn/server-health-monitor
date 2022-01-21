@@ -13,4 +13,8 @@ class Organisation < ApplicationRecord
   def servers_with_immediate_problem
     servers.order(updated_at: :desc).select { |server| server.last_request_failed? }
   end
+
+  def healthy_servers
+    servers.order(updated_at: :desc).select { |server|  !server.last_request_failed? && !server.recent_failure? }
+  end
 end

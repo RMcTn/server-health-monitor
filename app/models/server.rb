@@ -14,11 +14,12 @@ class Server < ApplicationRecord
     "https://"
   ]
 
+  @@heartbeats_check_amount = 5
 
+  
   def recent_failure?
-    @heartbeats_check_amount = 5
     # TODO: Should use a scope here for order?
-    arr = heartbeats.order(id: :desc).limit(@heartbeats_check_amount)
+    arr = heartbeats.order(id: :desc).limit(@@heartbeats_check_amount)
     return false if arr.first == nil
     return false if ERRORS.include?(arr[0].status_code) 
     arr.any? do |heartbeat|
@@ -30,4 +31,26 @@ class Server < ApplicationRecord
     return false if heartbeats.first == nil
     ERRORS.include?(heartbeats.first.status_code)
   end
+
+  def all_good?
+    !last_request_failed? && !recent_failure?
+  end
+
+  def just_became_healthy?
+    arr = heartbeats.order(id: :desc).limit(@@heartbeats_check_amount + 1)
+    return false if arr.first == nil
+    return false if arr.length < @@heartbeats_check_amount 
+
+    if ERRORS.include?(arr.last.status_code)
+      arr.slice(0, arr.length - 1).each do |heartbeat|
+        if ERRORS.include?(heartbeat.status_code)
+          return false
+        end
+      end
+      return true
+    end 
+
+    return false
+  end
+
 end

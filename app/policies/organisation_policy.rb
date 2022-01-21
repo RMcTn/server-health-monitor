@@ -19,6 +19,10 @@ class OrganisationPolicy < ApplicationPolicy
     @organisation.users.include?(@user)
   end
 
+  def healthy?
+    @organisation.users.include?(@user)
+  end
+
   def show?
     @organisation.users.include?(@user)
   end
