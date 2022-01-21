@@ -6,7 +6,21 @@ class Server < ApplicationRecord
 
   ERRORS = [
     "500",
+    "501",
+    "502",
+    "503",
+    "504",
+    "505",
+    "506",
+    "507",
+    "508",
+    "509",
+    "510",
+    "511",
     "0"
+  ]
+
+  CLIENT_ERRORS = [
   ]
 
   PROTOCOLS = [

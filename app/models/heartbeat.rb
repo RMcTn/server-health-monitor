@@ -2,6 +2,14 @@ class Heartbeat < ApplicationRecord
   belongs_to :server, touch: true
   default_scope { order(id: :desc) }
 
+  def is_500_error?
+    return self.status_code[0] == "5"
+  end
+
+  def is_400_error?
+    return self.status_code[0] == "4"
+  end
+
   after_create_commit {
     broadcast_prepend_to server, locals: {server: server, organisation: server.organisation}
     

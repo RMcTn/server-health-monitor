@@ -6,7 +6,6 @@
   <% if alert.present? %>
     <p class="inline-block px-3 py-2 mb-5 font-medium text-red-500 rounded-lg bg-red-50" id="notice"><%= alert %></p>
   <% end %>
-  <p>Possible there could be a bug with the heartbeats turbo stream. Something about a missing source maybe since it's on the heartbeat entries?</p>
 
   <%= render @server, organisation: @organisation %>
 
