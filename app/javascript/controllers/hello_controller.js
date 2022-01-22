@@ -5,6 +5,6 @@ export default class extends Controller {
   connect() {
   }
 	toggleSidebar() {
-		this.sidebarTarget.classList.toggle("translate-x-0")
+		this.sidebarTarget.classList.toggle("-translate-x-full")
 	}
 }
