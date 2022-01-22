@@ -30,6 +30,19 @@ class Server < ApplicationRecord
 
   @@heartbeats_check_amount = 5
 
+  after_create_commit {
+    broadcast_prepend_to self.organisation, target: "healthy_servers", partial: "servers/healthy_server", locals: { server: self, organisation: self.organisation }
+  }
+
+  after_destroy_commit {
+    broadcast_remove_to self.organisation
+  }
+
+  after_update_commit {
+    # TODO: healthy server partial + problem server partial could just be merged into one server partial
+    broadcast_update_to self, partial: "servers/healthy_server", locals: {server: self, organisation: self.organisation }
+  }
+
   
   def recent_failure?
     # TODO: Should use a scope here for order?
