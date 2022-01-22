@@ -40,7 +40,7 @@ class Server < ApplicationRecord
 
   after_update_commit {
     # TODO: healthy server partial + problem server partial could just be merged into one server partial
-    broadcast_update_to self, partial: "servers/healthy_server", locals: {server: self, organisation: self.organisation }
+    broadcast_update_to self.organisation, target: "server_" + self.id.to_s ,partial: "servers/healthy_server", locals: {server: self, organisation: self.organisation }
   }
 
   
