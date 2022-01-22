@@ -5,8 +5,10 @@
 
 
 <% if action_name != "show" %>
+  <div class="flex flex-wrap gap-2">
   <%= link_to "Show this organisation", organisation, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to 'Edit this organisation', edit_organisation_path(organisation), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to 'Edit this organisation', edit_organisation_path(organisation), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
   <hr class="mt-6">
 <% end %>
 </div>

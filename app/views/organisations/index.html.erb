@@ -7,7 +7,7 @@
   <% end %>
   <%= turbo_stream_from @organisation %>
 
-  <div class="flex items-center justify-between">
+  <div class="flex flex-wrap items-center justify-between">
     <h1 class="text-4xl font-bold">Organisations</h1>
     <%= link_to 'New organisation', new_organisation_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>

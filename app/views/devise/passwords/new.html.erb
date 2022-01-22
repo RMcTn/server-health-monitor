@@ -9,10 +9,10 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
-    <div class="flex py-2 actions">
-      <%= f.submit "Send me reset password instructions", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+    <div class="flex py-4 actions">
+      <%= f.submit "Send me reset password instructions", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
     </div>
-    <div class="flex gap-2">
+    <div class="flex gap-4">
       <%= render "devise/shared/links" %>
     </div>
   <% end %>
