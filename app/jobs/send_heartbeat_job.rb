@@ -1,6 +1,6 @@
 class SendHeartbeatJob < ApplicationJob
   require 'uri'
-  require 'Net/http'
+  require 'net/http'
   queue_as :default
   after_perform do |job|
     self.class.set(wait: 10.seconds).perform_later(job.arguments.first)
