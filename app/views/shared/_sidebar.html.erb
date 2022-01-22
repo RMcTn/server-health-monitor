@@ -1,6 +1,6 @@
 <div class="min-h-screen md:flex" data-controller="hello">
   <div id="mobile-menu-bar" class="fixed flex justify-between w-full h-16 text-white bg-blue-600 md:h-0 md:hidden">
-    <p>Something</p>
+    <p>Server uptime monitor</p>
     <button class="p-4 focus:bg-gray-700" data-action="click->hello#toggleSidebar">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -8,7 +8,6 @@
     </button>
   </div>
   <div id="sidebar" tabindex=0 data-hello-target="sidebar" class="fixed inset-y-0 left-0 w-64 px-2 text-white bg-blue-600 transform ease-in-out -translate-x-full transition duration-200 md:translate-x-0">
-    Logo
     <nav class="flex flex-col font-bold">
       <%= link_to dashboard_index_path, class: "px-4 py-1 hover:bg-red-400 rounded transition duration-200" do %>
         <div class="flex">
