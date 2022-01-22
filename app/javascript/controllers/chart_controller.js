@@ -5,7 +5,6 @@ export default class extends Controller {
 	static targets = ["chart", "heartbeat"]
 	connect() {
 		this.chart = new Chartkick.LineChart(this.chartTarget, this.data, {"title": "Response time for last 10 requests", "ytitle": "Response time in seconds"})
-		console.log(this.data)
 	}
 
 	heartbeatTargetConnected() {

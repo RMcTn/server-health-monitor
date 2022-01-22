@@ -7,13 +7,12 @@
     <p class="inline-block px-3 py-2 mb-5 font-medium text-red-500 rounded-lg bg-red-50" id="notice"><%= alert %></p>
   <% end %>
 
-  <%= render @server, organisation: @organisation %>
+  <%= render partial: "server_header", locals: { server: @server,  organisation: @organisation } %>
 
-  <%= link_to 'Edit this server', edit_organisation_server_path(@organisation, @server), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <div class="inline-block ml-2">
-    <%= button_to 'Destroy this server', organisation_server_path(@organisation, @server), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-  </div>
-  <%= link_to 'Back to organisation', organisation_path(@organisation), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <div class="flex flex-wrap gap-4">
+    <%= link_to 'Edit this server', edit_organisation_server_path(@organisation, @server), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= button_to 'Destroy this server', organisation_server_path(@organisation, @server), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= link_to 'Back to organisation', organisation_path(@organisation), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
   <div data-chart-target="chart" class="w-full h-96"></div>
 
