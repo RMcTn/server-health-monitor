@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get 'healthy', to: 'organisations#healthy'
     resources :organisations_users, only: [:index, :new, :create, :destroy]
     resources :servers do 
-      resources :heartbeats, only: [:show, :index]
+      resources :heartbeats, only: [:show]
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
