@@ -16,8 +16,6 @@
   </div>
   <div data-chart-target="chart" class="w-full h-96"></div>
 
-  <%= pie_chart @server.heartbeats.group(:status_code).count, title: "Status codes" %>
-
   <h3 class="py-4 text-lg font-bold">Requests</h3>
   <div id="heartbeats" class="flex flex-col gap-4">
     <%= render @server.heartbeats.order(id: :desc), server: @server, organisation: @organisation %>
