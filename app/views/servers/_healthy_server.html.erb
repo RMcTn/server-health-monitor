@@ -1,5 +1,5 @@
 <%# TODO: healthy server partial + problem server partial could just be merged into one server partial %>
-<div id="<%= dom_id server %>">
+<div id="<%= dom_id server %>" class="p-2">
   <%= render 'servers/server_header', server: server %>
   <%= link_to "Show this server", organisation_server_path(organisation, server), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>
