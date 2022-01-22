@@ -1,6 +1,6 @@
 <% round_trip_time = nil %>
 <% round_trip_time = heartbeat.response_time - heartbeat.request_time if heartbeat.response_time != nil %>
-<%= tag.div id: dom_id(heartbeat), data: { chart_target: "heartbeat", request_time: heartbeat.request_time, response_time: round_trip_time }, class: heartbeat_colour(heartbeat) + " rounded-lg px-4 py-4" do %>
+<%= tag.div id: dom_id(heartbeat), data: { chart_target: "heartbeat", request_time: heartbeat.request_time, response_time: round_trip_time }, class: heartbeat_colour(heartbeat) + " rounded-lg px-4 py-4 break-all" do %>
   <p class="font-bold"><%= heartbeat.status_code %> - <%= heartbeat.status_message %></p>
   <p>Request sent <span class="font-bold"><%= time_ago_in_words(heartbeat.request_time) %></span> ago (<%= heartbeat.request_time %>)</p>
   <% if heartbeat.response_time %>
