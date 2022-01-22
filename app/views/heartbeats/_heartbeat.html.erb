@@ -2,15 +2,8 @@
 <% round_trip_time = heartbeat.response_time - heartbeat.request_time if heartbeat.response_time != nil %>
 <%= tag.div id: dom_id(heartbeat), data: { chart_target: "heartbeat", request_time: heartbeat.request_time, response_time: round_trip_time }, class: heartbeat_colour(heartbeat) + " rounded-lg px-4 py-4" do %>
   <p class="font-bold"><%= heartbeat.status_code %> - <%= heartbeat.status_message %></p>
-  <p><%= heartbeat.request_time %></p>
-  <p>Request sent <span><%= time_ago_in_words(heartbeat.request_time) %></span> ago</p>
+  <p>Request sent <span class="font-bold"><%= time_ago_in_words(heartbeat.request_time) %></span> ago (<%= heartbeat.request_time %>)</p>
   <% if heartbeat.response_time %>
-    <p>Response in <span><%= distance_of_time_in_words(heartbeat.request_time, heartbeat.response_time)%></span> (<%= heartbeat.response_time - heartbeat.request_time %> seconds)</p>
-  <% end %>
-  <% if true %>
-    <% # TODO: Better solution for action_name check since turbo stream is coming in as not a show action, but rendering on server page does on load %>
-    <% if action_name != "xxx" %>
-      <%= link_to "Show this heartbeat", organisation_server_heartbeat_path(organisation, server, heartbeat), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <% end %>
+    <p>Response in <span><%= distance_of_time_in_words(heartbeat.request_time, heartbeat.response_time)%></span> (<span class="font-bold"><%= heartbeat.response_time - heartbeat.request_time %> seconds</span>)</p>
   <% end %>
 <% end %>
