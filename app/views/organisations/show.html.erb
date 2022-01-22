@@ -11,14 +11,16 @@
 
     <%= render @organisation %>
     
-    <%= link_to 'Edit this organisation', edit_organisation_path(@organisation), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this organisation', organisation_path(@organisation), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <div class="flex gap-4 flex-wrap">
+      <%= link_to 'Edit this organisation', edit_organisation_path(@organisation), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= button_to 'Destroy this organisation', organisation_path(@organisation), method: :delete, class: "inline-block mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= link_to 'Back to organisations', organisations_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to 'New server', new_organisation_server_path(@organisation), class: "mt-2 rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
     </div>
-    <%= link_to 'Back to organisations', organisations_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'New server', new_organisation_server_path(@organisation), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
   </div>
+  <div class="flex flex-col py-4 gap-2">
     <%= render "problems", organisation: @organisation %>
     <%= render "warnings", organisation: @organisation %>
     <%= render "healthy_servers", organisation: @organisation %>
+  </div>
 </div>
