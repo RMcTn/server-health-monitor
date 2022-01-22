@@ -6,11 +6,11 @@
   <% status_indicator_color = "bg-red-500" %>
 <% end %>
 
-<div id="<%= dom_id(server) + "-server-header" %>" class="">
+<div id="<%= dom_id(server) + "-server-header" %>">
   <%= turbo_stream_from server %>
-  <div class="flex pb-2 gap-4">
+  <div class="flex flex-wrap pb-2 gap-4">
     <div class="w-5 h-5 <%= status_indicator_color %> rounded-full border border-black"></div>
-    <p class="">
+    <p class="break-all">
     <%= server.protocol %><%= server.hostname %>
     </p>
   </div>
