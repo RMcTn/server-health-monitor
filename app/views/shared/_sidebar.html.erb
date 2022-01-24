@@ -112,6 +112,9 @@
             <p class="px-2">Sign up</p>
           </div>
         <% end %>
+        <hr class="my-2">
+        <%= button_to "Try the demo user", user_session_path, method: :post, data: {turbo: false}, class: "w-full px-4 py-1 inline inline-block border hover:bg-red-400 rounded font-bold transition duration-200", params: {user: { email: "demo@example.com",  password: "password" }} %>
+        <hr class="my-2">
       <% end %>
     </nav>
   </div>
