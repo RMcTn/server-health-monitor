@@ -10,8 +10,8 @@
   <%= turbo_stream_from server %>
   <div class="flex flex-wrap pb-2 gap-4">
     <div class="w-5 h-5 <%= status_indicator_color %> rounded-full border border-black"></div>
-    <p class="break-all">
-    <%= server.protocol %><%= server.hostname %>
+    <p class="font-bold break-all">
+    <%= server.name %>
     </p>
   </div>
 </div>
