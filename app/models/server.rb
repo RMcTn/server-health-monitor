@@ -41,7 +41,8 @@ class Server < ApplicationRecord
 
   after_update_commit {
     # TODO: healthy server partial + problem server partial could just be merged into one server partial
-    broadcast_replace_to self.organisation, target: "server_" + self.id.to_s ,partial: "servers/healthy_server", locals: {server: self, organisation: self.organisation }
+    server_header_dom_id = "server_" + self.id.to_s + "-server-header"
+    broadcast_replace_to(self, target: server_header_dom_id, partial: 'servers/server_header', locals: {server: self, organisation: self.organisation})
   }
 
   
