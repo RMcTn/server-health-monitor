@@ -6,6 +6,11 @@ class SendHeartbeatJob < ApplicationJob
     self.class.set(wait: 10.seconds).perform_later(job.arguments.first)
   end
 
+  rescue_from ActiveJob::DeserializationError do 
+    # Means server was deleted, can just ignore
+    true
+  end
+
   def perform(server)
     uri = URI.parse(server.protocol + server.hostname)
     request_time = Time.now
