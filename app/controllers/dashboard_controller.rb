@@ -6,6 +6,17 @@ class DashboardController < ApplicationController
   end
 
   def index
+    @problem_servers = []
+    @organisations.each do |org|
+      servers = org.servers_with_immediate_problem
+      if servers.length == 0
+        next
+      end
+      org_servers = {}
+      org_servers[:organisation] = org
+      org_servers[:servers] = servers
+      @problem_servers << org_servers
+    end
   end
 
   def set_organisations
