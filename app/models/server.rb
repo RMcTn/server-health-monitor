@@ -1,4 +1,5 @@
 class Server < ApplicationRecord
+  before_validation :strip_hostname
   validates :hostname, presence: true, format: { with: /\A(?!https?:\/\/).*/, message: "Hostname cannot start with http:// or https://"}
   validates :protocol, inclusion: { in: %w(http:// https://)}
   validates :name, presence: true
@@ -80,6 +81,10 @@ class Server < ApplicationRecord
     end 
 
     return false
+  end
+
+  def strip_hostname
+    self.hostname = self.hostname.strip
   end
 
 end
