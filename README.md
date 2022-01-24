@@ -1,5 +1,10 @@
 # README
 
+async adapter for action cable not working for development any more, requires redis in dev now
+
+PostgreSQL
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
