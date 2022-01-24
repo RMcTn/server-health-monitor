@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'dashboard/show'
   get 'dashboard/index'
+
+  get 'failingserver', to: "demo#failing"
   devise_for :users
   resources :user, only: :show
   resources :organisations do 
