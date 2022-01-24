@@ -14,7 +14,7 @@ class Heartbeat < ApplicationRecord
     broadcast_prepend_to server, locals: {server: server, organisation: server.organisation}
     
     server_header_dom_id = "server_" + server.id.to_s + "-server-header"
-    broadcast_replace_to(server, target: server_header_dom_id, partial: 'servers/server_header', locals: {server: server, organisation: server.organisation})
+    broadcast_replace_to(server.organisation, target: server_header_dom_id, partial: 'servers/server_header', locals: {server: server, organisation: server.organisation})
 
 
     # TODO NOTE SPEEDUP Fire this off for every heartbeat? Any better way? Is it even a problem?

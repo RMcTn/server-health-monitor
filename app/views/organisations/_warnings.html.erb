@@ -1,5 +1,4 @@
 <h1 class="text-xl font-bold">Servers with recent problems</h1>
-<%= turbo_stream_from @organisation.id.to_s + "-warning" %>
 <div id="warning_servers" class="flex flex-wrap py-4 pl-4 bg-orange-200 rounded-lg">
   <%= turbo_stream_from @organisation %>
   <%= render partial: "servers/problem_server", collection: @organisation.servers_with_recent_problems, as: :server, locals: { organisation: @organisation } %>
