@@ -1,5 +1,10 @@
 # README
 
+
+<img width="768" alt="image" src="https://user-images.githubusercontent.com/18317099/150864973-b6c65a57-7ea4-4fea-9ad3-04c96870cf11.png">
+<img width="768" alt="image" src="https://user-images.githubusercontent.com/18317099/150865107-2a4a3d5b-bd25-4676-a98f-4d1938e33ead.png">
+
+
 async adapter for action cable not working for development any more, requires redis in dev now
 
 PostgreSQL
