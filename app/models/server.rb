@@ -1,6 +1,6 @@
 class Server < ApplicationRecord
   before_validation :strip_hostname
-  validates :hostname, presence: true, format: { with: /\A(?!https?:\/\/).*/, message: "Hostname cannot start with http:// or https://"}
+  validates :hostname, presence: true, format: { with: /\A(?!https?:\/\/).*/, message: "cannot start with http:// or https://"}
   validates :protocol, inclusion: { in: %w(http:// https://)}
   validates :name, presence: true
   has_many :heartbeats, dependent: :destroy
