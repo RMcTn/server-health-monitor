@@ -1,7 +1,7 @@
 class Server < ApplicationRecord
   before_validation :strip_hostname
-  validates :hostname, presence: true, format: { with: /\A(?!https?:\/\/).*/, message: "cannot start with http:// or https://"}
-  validates :protocol, inclusion: { in: %w(http:// https://)}
+  validates :hostname, presence: true, format: { with: /\A(?!https?:\/\/).*/, message: "cannot start with http:// or https://" }
+  validates :protocol, inclusion: { in: %w(http:// https://) }
   validates :name, presence: true
   has_many :heartbeats, dependent: :destroy
   belongs_to :organisation
@@ -20,7 +20,7 @@ class Server < ApplicationRecord
     "510",
     "511",
     "0"
-  ]
+  ].freeze
 
   CLIENT_ERRORS = [
   ]
@@ -28,7 +28,7 @@ class Server < ApplicationRecord
   PROTOCOLS = [
     "http://",
     "https://"
-  ]
+  ].freeze
 
   @@heartbeats_check_amount = 5
 
@@ -43,15 +43,14 @@ class Server < ApplicationRecord
   after_update_commit {
     # TODO: healthy server partial + problem server partial could just be merged into one server partial
     server_header_dom_id = "server_" + self.id.to_s + "-server-header"
-    broadcast_replace_to(self.organisation, target: server_header_dom_id, partial: 'servers/server_header', locals: {server: self, organisation: self.organisation})
+    broadcast_replace_to(self.organisation, target: server_header_dom_id, partial: 'servers/server_header', locals: { server: self, organisation: self.organisation })
   }
 
-  
   def recent_failure?
     # TODO: Should use a scope here for order?
     arr = heartbeats.order(id: :desc).limit(@@heartbeats_check_amount)
     return false if arr.first == nil
-    return false if ERRORS.include?(arr[0].status_code) 
+    return false if ERRORS.include?(arr[0].status_code)
     arr.any? do |heartbeat|
       ERRORS.include?(heartbeat.status_code)
     end
@@ -69,7 +68,7 @@ class Server < ApplicationRecord
   def just_became_healthy?
     arr = heartbeats.order(id: :desc).limit(@@heartbeats_check_amount + 1)
     return false if arr.first == nil
-    return false if arr.length < @@heartbeats_check_amount 
+    return false if arr.length < @@heartbeats_check_amount
 
     if ERRORS.include?(arr.last.status_code)
       arr.slice(0, arr.length - 1).each do |heartbeat|
@@ -78,7 +77,7 @@ class Server < ApplicationRecord
         end
       end
       return true
-    end 
+    end
 
     return false
   end
