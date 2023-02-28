@@ -2,6 +2,10 @@
 
 one:
   hostname: MyString
+  name: One
+  organisation: one
 
 two:
   hostname: MyString
+  name: Two
+  organisation: two
