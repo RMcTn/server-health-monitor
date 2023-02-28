@@ -14,6 +14,9 @@ It expects that /failingserver is routed to DemoController#failing, so that a de
 The task wipes out all organisations (and therefore servers) that the demo user is apart of. If any org was to add the demo user, it will be wiped
 If in prod, the APP_URL env var should hold the url to the server, so that /failingserver can be pinged automatically
 
+
+Demo user rake task: reset_demo_user (TODO add password argument for this instead of hard coding)
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

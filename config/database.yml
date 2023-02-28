@@ -29,4 +29,4 @@ test:
 production:
   <<: *default
   database: server_monitor_production
-  database: <%= ENV.fetch("DATABASE_URL") {""} %>
+  host: <%= ENV.fetch("DATABASE_URL") {""} %>
